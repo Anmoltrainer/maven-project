@@ -33,7 +33,7 @@ pipeline {
             stage("Push image to Dockerhub") {
                steps {
                  script {
-                     withCredentials([string(credentialsId: 'dockerhub', variable: 'Password')]) {
+                     withCredentials([string(credentialsId: 'dockerhubID', variable: 'Password')]) {
                      sh 'docker login -u bprasad701 -p ${Password}'
                      }
                      sh 'docker image push cz-bookstore:latest'
