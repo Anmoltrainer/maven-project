@@ -21,11 +21,21 @@ pipeline {
                     }
                 }
             }
-            stage("Deploy to Tomcat server") {
-                steps{
-                  deploy adapters: [tomcat9(credentialsId: 'TomcatloginID', path: '', url: 'http://18.207.141.184:8080/')], contextPath: 'czbookstore', war: '**/*.war'
+
+            stage("Build Docker Image"){
+                steps {
+                  script{
+                      sh 'docker build -t cloudzenix/cz-bookstore .'
+                    }
                 }
             }
-        }
-}
+
+
+#            stage("Deploy to Tomcat server") {
+#                steps{
+#                  deploy adapters: [tomcat9(credentialsId: 'TomcatloginID', path: '', url: 'http://18.207.141.184:8080/')], contextPath: 'czbookstore', war: '**/*.war'
+#                }
+#            }
+#       }
+#}
 
