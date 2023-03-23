@@ -37,7 +37,7 @@ pipeline {
             stage("Push image to Dockerhub") {
                steps {
                  script {
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --passwd-stdin'
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     sh 'docker push bprasad701/cz-bookstore:latest'
                  }
                }
