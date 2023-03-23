@@ -2,14 +2,18 @@ pipeline {
     agent any
     tools {
         maven 'Maven 3.9.0'
-    }
+        }
+        environment {
+            DOCKERHUB_CREDENTIALS = credentials('dockerhubID')
+        }
         stages {
             stage("git_checkout") {
                     steps {
                     git branch: 'J2EE', credentialsId: 'githubloginID', url: 'https://github.com/bprasad701/onlinebookstore.git'
                     echo "repo cloned successfully"
                     }
-                    }
+            }
+            
             stage("Build") {
                 steps {
                     sh 'mvn clean package'
@@ -25,7 +29,7 @@ pipeline {
             stage("Build Docker Image") {
                 steps {
                   script {
-                      sh 'docker build -t cz-bookstore .'
+                      sh 'docker build -t bprasad701/cz-bookstore:latest .'
                     }
                 }
             }
@@ -33,14 +37,10 @@ pipeline {
             stage("Push image to Dockerhub") {
                steps {
                  script {
-                     withCredentials([string(credentialsId: 'dockerhubID', variable: 'Password')]) {
-                     sh 'docker login -u bprasad701 -p ${Password}'
-                     }
-                     sh 'docker image push cz-bookstore:latest'
-                   }
-                }
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --passwd-stdin'
+                    sh 'docker push bprasad701/cz-bookstore:latest'
+                 }
+               }
             }
-   
-     }
+    }
 }
-
