@@ -31,11 +31,5 @@ pipeline {
             }
 
 
-#            stage("Deploy to Tomcat server") {
-#                steps{
-#                  deploy adapters: [tomcat9(credentialsId: 'TomcatloginID', path: '', url: 'http://18.207.141.184:8080/')], contextPath: 'czbookstore', war: '**/*.war'
-#                }
-#            }
-#       }
 }
 
