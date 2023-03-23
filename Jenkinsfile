@@ -25,7 +25,7 @@ pipeline {
             stage("Build Docker Image") {
                 steps {
                   script {
-                      sh 'docker build -t cloudzenix/cz-bookstore .'
+                      sh 'docker build -t cz-bookstore .'
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
                      withCredentials([string(credentialsId: 'dockerhub', variable: 'Password')]) {
                      sh 'docker login -u bprasad701 -p ${Password}'
                      }
-                     sh 'docker image push cloudzenix/cz-bookstore:latest'
+                     sh 'docker image push cz-bookstore:latest'
                    }
                 }
             }
