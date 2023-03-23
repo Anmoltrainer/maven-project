@@ -36,7 +36,7 @@ pipeline {
                      withCredentials([string(credentialsId: 'dockerhub', variable: 'Password')]) {
                      sh 'docker login -u bprasad701 -p ${Password}'
                      }
-                     sh 'docker push bprasad701/cloudzenix_docker_images'
+                     sh 'docker image push cloudzenix/cz-bookstore:latest'
                    }
                 }
             }
