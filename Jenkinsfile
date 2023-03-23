@@ -29,6 +29,17 @@ pipeline {
                     }
                 }
             }
+
+            stage("Push image to Dockerhub") {
+               steps {
+                 script {
+                     withCredentials([string(credentialsId: 'dockerhub', variable: 'Password')]) {
+                     sh 'docker login -u bprasad701 -p ${Password}'
+                     }
+                     sh 'docker push cloudzenix/cz-bookstore'
+                   }
+                }
+            }
    
      }
 }
