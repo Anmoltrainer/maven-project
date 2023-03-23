@@ -25,7 +25,7 @@ pipeline {
             stage("Build Docker Image"){
                 steps {
                   script{
-                      sh 'sudo docker build -t cloudzenix/cz-bookstore .'
+                      sh 'docker build -t cloudzenix/cz-bookstore .'
                     }
                 }
             }
