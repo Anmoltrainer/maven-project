@@ -1,2 +1,2 @@
 @Library('cloudZenix-Shared-lib') _
-onlineBookStore ("https://github.com/bprasad701/onlinebookstore.git","bprasad701/cloud") 
+onlineBookStore ("https://github.com/bprasad701/onlinebookstore.git","bprasad701/newimage") 
