@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to JFrog Artifactory
-                    sh 'docker tag your-docker-repo/your-app:latest jfrog-artifactory-url/your-docker-repo/your-app:latest'
-                    sh 'docker login -u your-jfrog-username -p your-jfrog-api-key jfrog-artifactory-url'
-                    sh 'docker push jfrog-artifactory-url/your-docker-repo/your-app:latest'
+                    sh 'docker tag bprasad701/obs-java:latest http://3.235.133.9:8082/bprasad701/obs-java:latest'
+                    sh 'docker login -u admin -p Vbp1993@gvr http://3.235.133.9:8082'
+                    sh 'docker push http://3.235.133.9:8082/bprasad701/obs-java:latest'
                 }
             }
         }
