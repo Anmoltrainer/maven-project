@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to JFrog Artifactory
-                    sh 'docker tag bprasad701/obs-java:latest http://3.235.133.9:8082/bhanu-docker-images/obs-java'
-                    sh 'docker login -u admin -p Vbp1993@gvr http://3.235.133.9:8082'
-                    sh 'docker push http://3.235.133.9:8082/bhanu-docker-images/obs-java'
+                    sh 'docker tag bprasad701/obs-java:latest 3.235.133.9:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker login -u admin -p Vbp1993@gvr 3.235.133.9:8082'
+                    sh 'docker push 3.235.133.9:8082/bhanu-docker-images/obs-java:latest'
                 }
             }
         }
