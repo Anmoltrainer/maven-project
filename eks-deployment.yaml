@@ -1,1 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: BookStore
+  labels:
+    app: obs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: obs
+  template:
+    metadata:
+      labels:
+        app: obs
+    spec:
+      containers:
+      - name: obs
+        image: 3.237.95.249:8082/bhanu-docker-images/obs-java:latest
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: obs-service
+spec:
+  selector:
+    app: obs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8082
+  type: LoadBalancer
 
