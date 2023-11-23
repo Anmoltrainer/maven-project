@@ -19,6 +19,17 @@ spec:
         image: 44.203.18.230:8082/bhanu-docker-images/obs-java:latest
         ports:
         - containerPort: 8082
+        env:
+        - name: JFROG_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: jfrog-secret
+              key: username
+        - name: JFROG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jfrog-secret
+              key: password
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +43,3 @@ spec:
       port: 80
       targetPort: 8082
   type: LoadBalancer
-
