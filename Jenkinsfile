@@ -45,9 +45,9 @@ pipeline {
             steps {
                 script {
                     // Authenticate with EKS cluster
-                    sh``` 
-                    aws eks --region us-east-1 update-kubeconfig --name CZ-Cluster
-                    ```
+                    sh '''
+                     aws eks --region us-east-1 update-kubeconfig --name CZ-Cluster
+                    '''
 
                     // Deploy to EKS cluster
                     // sh 'kubectl apply -f eks-deployment.yaml'
