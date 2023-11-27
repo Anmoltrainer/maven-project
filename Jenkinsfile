@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to JFrog Artifactory
-                    sh 'docker tag bprasad701/obs-java:latest 3.236.92.74:8082/bhanu-docker-images/obs-java:latest'
-                    sh 'docker login -u admin -p Vbp1993@gvr 3.236.92.74:8082'
-                    sh 'docker push 3.236.92.74:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker tag bprasad701/obs-java:latest 44.204.182.172:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker login -u admin -p Vbp1993@gvr 44.204.182.172:8082'
+                    sh 'docker push 44.204.182.172:8082/bhanu-docker-images/obs-java:latest'
                 }
             }
         }
@@ -45,10 +45,10 @@ pipeline {
                 script {
                     // Authenticate with JFrog Artifactory
                     // Use JFrog CLI or credentials as per your setup
-                    sh 'docker login -u admin -p Vbp1993@gvr 3.236.92.74:8082'
+                    sh 'docker login -u admin -p Vbp1993@gvr 44.204.182.172:8082'
 
                     // Pull Docker image from JFrog Artifactory
-                    sh 'docker pull 3.236.92.74:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker pull 44.204.182.172/bhanu-docker-images/obs-java:latest'
                 }
             }
         }
