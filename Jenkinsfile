@@ -40,19 +40,7 @@ pipeline {
             }
         }
 
-        stage('Pull from JFrog') {
-            steps {
-                script {
-                    // Authenticate with JFrog Artifactory
-                    // Use JFrog CLI or credentials as per your setup
-                    sh 'docker login -u admin -p Vbp1993@gvr 44.204.182.172:8082'
-
-                    // Pull Docker image from JFrog Artifactory
-                    sh 'docker pull 44.204.182.172/bhanu-docker-images/obs-java:latest'
-                }
-            }
-        }
-
+        
         stage('Deploy to EKS') {
             steps {
                 script {
