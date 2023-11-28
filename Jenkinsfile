@@ -44,6 +44,16 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
+
+                    sh 'echo "AWS CLI Configuration:"'
+                    sh 'aws configure list'
+
+                    sh 'echo "Kubectl Configuration:"'
+                    sh 'kubectl config view'
+
+                    sh 'echo "Docker Info:"'
+                    sh 'docker info'
+                    
                     // Authenticate with EKS cluster
                     sh 'aws eks --region us-east-1 update-kubeconfig --name CZ-Cluster'
 
