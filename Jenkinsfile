@@ -40,25 +40,21 @@ pipeline {
             }
         }
 
-        
         stage('Deploy to EKS') {
             steps {
                 script {
-
-                    sh 'echo "AWS CLI Configuration:"'
-                    sh 'aws configure list'
-
-                    sh 'echo "Kubectl Configuration:"'
-                    sh 'kubectl config view'
-
-                    sh 'echo "Docker Info:"'
-                    sh 'docker info'
                     
-                    // Authenticate with EKS cluster
-                    sh 'aws eks --region us-east-1 update-kubeconfig --name CZ-Cluster'
-
-                    // Deploy to EKS cluster
-                    sh 'kubectl apply -f eks-deployment.yaml'
+                    // Configure AWS CLI with credentials
+                    withAWS(credentials: 'aws-credentials-id') {
+                        // Authenticate with EKS cluster
+                        sh 'aws eks --region us-east-1 update-kubeconfig --name CZ-Cluster'
+                        
+                        // Configure kubectl with kubeconfig
+                        // withKubeConfig(credentialsId: 'kubeconfig-credentials-id', serverUrl: 'https://your-cluster-api-server') {
+                            // Deploy to EKS cluster
+                            sh 'kubectl apply -f eks-deployment.yaml'
+                        }
+                    }
                 }
             }
         }
