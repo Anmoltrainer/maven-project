@@ -45,9 +45,16 @@ pipeline {
                 script {
                         // Authenticate with EKS cluster
                         sh 'aws eks --region us-east-1 update-kubeconfig --name cz-eks-cluster'
+                        sh 'echo "AWS CLI Configuration:"'
+                        sh 'aws configure list'
+
+                        sh 'echo "Kubectl Configuration:"'
+                        sh 'kubectl config view'
+
+
                         
                         // Deploy to EKS cluster
-                        sh 'kubectl apply -f eks-deployment.yaml'
+                        // sh 'kubectl apply -f eks-deployment.yaml'
                 }
             }
         }
