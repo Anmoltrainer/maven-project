@@ -51,6 +51,8 @@ pipeline {
                         sh 'echo "Kubectl Configuration:"'
                         sh 'kubectl config view'
 
+                        sh 'kubectl get nodes'
+
 
                         
                         // Deploy to EKS cluster
