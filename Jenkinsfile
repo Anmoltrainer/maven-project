@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to JFrog Artifactory
-                    sh 'docker tag bprasad701/obs-java:latest 3.227.229.102:8082/bhanu-docker-images/obs-java:latest'
-                    sh 'docker login -u admin -p Vbp1993@gvr 3.227.229.102:8082'
-                    sh 'docker push 3.227.229.102:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker tag bprasad701/obs-java:latest 34.201.8.156:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker login -u admin -p Vbp1993@gvr 34.201.8.156:8082'
+                    sh 'docker push 34.201.8.156:8082/bhanu-docker-images/obs-java:latest'
                 }
             }
         }
@@ -44,19 +44,9 @@ pipeline {
             steps {
                 script {
                         // Authenticate with EKS cluster
-                        sh 'aws eks --region us-east-1 update-kubeconfig --name cz-eks-cluster'
-                        sh 'echo "AWS CLI Configuration:"'
-                        sh 'aws configure list'
-
-                        sh 'echo "Kubectl Configuration:"'
-                        sh 'kubectl config view'
-
-                        sh 'kubectl get nodes'
-
-
-                        
+                        sh 'aws eks --region us-east-1 update-kubeconfig --name cz-cluster'
                         // Deploy to EKS cluster
-                        // sh 'kubectl apply -f eks-deployment.yaml'
+                        sh 'kubectl apply -f eks-deployment.yaml'
                 }
             }
         }
