@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: obs
-        image: 54.227.118.11:8082/bhanu-docker-images/obs-java:latest
+        image: https://jfrog.cloudzenix.net/bhanu-docker-images/obs-java:latest
         ports:
         - containerPort: 8082
       imagePullSecrets:
