@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 8082
       imagePullSecrets:
-      - name: jfrog-secret
+      - name: jfrog-registry-secret
       
 ---
 apiVersion: v1
