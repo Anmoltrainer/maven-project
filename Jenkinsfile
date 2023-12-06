@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to JFrog Artifactory
-                    sh 'docker tag bprasad701/obs-java:latest 34.201.8.156:8082/bhanu-docker-images/obs-java:latest'
-                    sh 'docker login -u admin -p Vbp1993@gvr 34.201.8.156:8082'
-                    sh 'docker push 34.201.8.156:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker tag bprasad701/obs-java:latest 54.227.118.11:8082/bhanu-docker-images/obs-java:latest'
+                    sh 'docker login -u admin -p Vbp1993@gvr 54.227.118.11:8082'
+                    sh 'docker push 54.227.118.11:8082/bhanu-docker-images/obs-java:latest'
                 }
             }
         }
@@ -43,10 +43,11 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
-                        // Authenticate with EKS cluster
-                        sh 'aws eks --region us-east-1 update-kubeconfig --name cz-cluster'
+                    // Use withCredentials to securely inject AWS credentials
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_cred', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                        sh 'aws eks update-kubeconfig --region us-east-1 --name CZ_EKS'
                         // Deploy to EKS cluster
-                        sh 'kubectl apply -f eks-deployment.yaml'
+                        sh '/home/ubuntu/bin/kubectl apply -f eks-deployment.yaml'
                 }
             }
         }
