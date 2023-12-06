@@ -48,6 +48,7 @@ pipeline {
                         sh 'aws eks update-kubeconfig --region us-east-1 --name CZ_EKS'
                         // Deploy to EKS cluster
                         sh '/home/ubuntu/bin/kubectl apply -f eks-deployment.yaml'
+                        sh '/home/ubuntu/bin/kubectl get svc'
                 }
             }
         }
