@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: obs
-        image: 34.201.8.156:8082/bhanu-docker-images/obs-java:latest
+        image: 54.227.118.11:8082/bhanu-docker-images/obs-java:latest
         ports:
         - containerPort: 8082
         env:
